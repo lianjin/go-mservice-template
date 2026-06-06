@@ -50,6 +50,10 @@ github.com/__TEMPLATE_ORG__/__TEMPLATE_REPO__/{common|client|server}
    - service_slug / db_name → 由仓库名推导
 4. 完成后会提交 `chore: initialize microservice from template`
 
+若 push 失败并提示 `without workflows permission`，需确认：
+- `init-from-template.yml` 已声明 `permissions.workflows: write`（模板最新版已包含）
+- 组织 **Settings → Actions → General → Workflow permissions** 为 **Read and write permissions**（不要选只读）
+
 ### 方式二：手动触发
 
 在新仓库中打开 **Actions → Init from template → Run workflow**，可自定义：
