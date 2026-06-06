@@ -61,15 +61,18 @@ replace_in_file() {
   " "${file}"
 }
 
+# Workflow YAML is excluded: GITHUB_TOKEN cannot push modified workflow files.
+# CI workflows read Go version from server/go.mod and repo metadata at runtime.
 while IFS= read -r -d '' file; do
   case "${file}" in
-    ./scripts/replace-template-vars.sh|./README.md|./.github/workflows/init-from-template.yml|./.github/workflows/provision-microservice.yml)
+    ./scripts/replace-template-vars.sh|./README.md)
       continue
       ;;
   esac
   replace_in_file "${file}"
 done < <(find . -type f \
   ! -path "./.git/*" \
+  ! -path "./.github/workflows/*" \
   \( -name "*.go" -o -name "*.mod" -o -name "*.sum" -o -name "*.yml" -o -name "*.yaml" \
      -o -name "*.json" -o -name "*.properties" -o -name "Dockerfile" -o -name "*.sh" \
      -o -name "*.proto" \) \

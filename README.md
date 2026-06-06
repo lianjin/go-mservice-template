@@ -50,9 +50,7 @@ github.com/__TEMPLATE_ORG__/__TEMPLATE_REPO__/{common|client|server}
    - service_slug / db_name → 由仓库名推导
 4. 完成后会提交 `chore: initialize microservice from template`
 
-若 push 失败并提示 `without workflows permission`，需确认：
-- `init-from-template.yml` 已声明 `permissions.workflows: write`（模板最新版已包含）
-- 组织 **Settings → Actions → General → Workflow permissions** 为 **Read and write permissions**（不要选只读）
+初始化**不会修改** `.github/workflows/`（`GITHUB_TOKEN` 无权 push workflow 变更）。Go 版本写在 `server/go.mod`（`__GO_VERSION__` 由 init 替换），CI 通过 `go-version-file: server/go.mod` 读取；Sonar / Railway 等使用 `${{ github.repository }}` 等表达式自动适配仓库名。
 
 ### 方式二：手动触发
 

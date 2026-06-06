@@ -28,7 +28,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: '__GO_VERSION__'
+          go-version-file: server/go.mod
           cache: true
 
       - name: Initialize CodeQL

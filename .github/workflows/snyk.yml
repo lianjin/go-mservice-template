@@ -33,7 +33,7 @@ jobs:
       - uses: actions/setup-go@v5
         if: steps.snyk.outputs.enabled == 'true'
         with:
-          go-version: '__GO_VERSION__'
+          go-version-file: server/go.mod
       - uses: actions/cache@v4
         if: steps.snyk.outputs.enabled == 'true'
         with:

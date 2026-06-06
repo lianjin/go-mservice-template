@@ -34,7 +34,7 @@ jobs:
         if: steps.sonar.outputs.enabled == 'true'
         uses: actions/setup-go@v5
         with:
-          go-version: '__GO_VERSION__'
+          go-version-file: server/go.mod
       - name: Run tests with coverage
         if: steps.sonar.outputs.enabled == 'true'
         run: |
@@ -48,7 +48,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >-
-            -Dsonar.projectKey=__SONAR_PROJECT_KEY__
+            -Dsonar.projectKey=${{ github.repository_owner }}_${{ github.event.repository.name }}
             -Dsonar.sources=server/service
             -Dsonar.go.coverage.reportPaths=server/coverage.out
             -Dsonar.exclusions=**/mock/**

@@ -34,7 +34,6 @@ on:
 
 permissions:
   contents: write
-  workflows: write
 
 env:
   CANONICAL_TEMPLATE_REPO: lianjin/go-mservice-template
@@ -80,8 +79,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Resolve template variables
         id: vars

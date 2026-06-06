@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
         with:
-          go-version: '__GO_VERSION__'
+          go-version-file: server/go.mod
       - name: Test server
         working-directory: server
         run: go test ./...
