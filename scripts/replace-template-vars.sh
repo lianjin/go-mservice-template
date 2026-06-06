@@ -65,7 +65,7 @@ replace_in_file() {
 # CI workflows read Go version from server/go.mod and repo metadata at runtime.
 while IFS= read -r -d '' file; do
   case "${file}" in
-    ./scripts/replace-template-vars.sh|./README.md)
+    ./scripts/replace-template-vars.sh|./scripts/finalize-init.sh|./TEMPLATE.md)
       continue
       ;;
   esac
@@ -75,7 +75,7 @@ done < <(find . -type f \
   ! -path "./.github/workflows/*" \
   \( -name "*.go" -o -name "*.mod" -o -name "*.sum" -o -name "*.yml" -o -name "*.yaml" \
      -o -name "*.json" -o -name "*.properties" -o -name "Dockerfile" -o -name "*.sh" \
-     -o -name "*.proto" \) \
+     -o -name "*.proto" -o -name "README.md" \) \
   -print0)
 
 rename_if_exists() {

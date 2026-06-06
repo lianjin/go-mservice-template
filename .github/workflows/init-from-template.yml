@@ -170,6 +170,11 @@ jobs:
         working-directory: server
         run: swag init
 
+      - name: Finalize documentation
+        run: |
+          chmod +x scripts/finalize-init.sh
+          ./scripts/finalize-init.sh "${{ env.CANONICAL_TEMPLATE_REPO }}" "${{ github.repository }}"
+
       - name: Commit initialized project
         run: |
           git config user.name "github-actions[bot]"
