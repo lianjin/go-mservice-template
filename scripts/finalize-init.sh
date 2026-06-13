@@ -15,12 +15,17 @@ if [ -z "${CURRENT_REPO}" ]; then
 fi
 
 if [ "${CURRENT_REPO}" = "${CANONICAL_TEMPLATE_REPO}" ]; then
-  echo "Canonical template repo; keep TEMPLATE.md and placeholder README."
+  echo "Canonical template repo; keep template-only files."
   exit 0
 fi
 
 echo "Removing template-only files..."
 rm -f TEMPLATE.md
+rm -f .github/workflows/init-from-template.yml
+rm -f .github/workflows/provision-microservice.yml
+rm -f .github/workflows/snyk.yml
+rm -f client/.snyk
+rm -f server/.snyk
 
 if [ -f README.md ] && grep -q '__TEMPLATE_' README.md; then
   echo "README still contains placeholders; run replace-template-vars.sh first."

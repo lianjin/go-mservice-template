@@ -37,7 +37,7 @@
 
 1. 点击 **Use this template** 创建新仓库（建议命名为 `xxx-mservice`）
 2. 首次 push 到 `main` 后自动运行 **Init from template**
-3. 替换占位符、生成 `README.md`，并删除本 `TEMPLATE.md`
+3. 替换占位符、发布 `common/v0.0.1` tag、`go get` 关联 client/server，并删除 `TEMPLATE.md` 与模板专用 workflow
 
 ### 方式二：手动触发
 
@@ -63,7 +63,6 @@ chmod +x scripts/replace-template-vars.sh
 | `build.yml` | build + test + lint |
 | `codeql.yml` | CodeQL |
 | `sonar.yml` | SonarQube |
-| `snyk.yml` | Snyk |
 | `trivy.yml` | Trivy |
 | `deploy.yml` | Railway 手动部署 |
 | `init-from-template.yml` | 新仓库初始化 |

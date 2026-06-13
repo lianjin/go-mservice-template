@@ -17,11 +17,10 @@ import (
 // @Accept json
 // @Produce json
 // @Param user body data.ItemVO true "Item information"
-// @Param client path string true "Client identifier" Enums(customer, merchant)
 // @Success 200	{object} data.BaseResponse{data=data.ItemVO}
 // @Failure 400 {object} data.BaseResponse{data=string}
 // @Failure 500 {object} data.BaseResponse{data=string}
-// @Router /__SERVICE_SLUG__/v1/{client}/items [post]
+// @Router /__SERVICE_SLUG__/v1/items [post]
 func CreateItem(c *gin.Context) {
 	item := &data.ItemVO{}
 	if err := c.ShouldBindJSON(&item); err != nil {
@@ -41,10 +40,9 @@ func CreateItem(c *gin.Context) {
 // @Summary Item Query with ID
 // @Description Get item information by item ID.
 // @Tags Item
-// @Param client path string true "Client identifier" Enums(customer, merchant)
 // @Param item_id path int true "Item.ID"
 // @Success 200
-// @Router /__SERVICE_SLUG__/v1/{client}/items/{item_id} [get]
+// @Router /__SERVICE_SLUG__/v1/items/{item_id} [get]
 func GetItems(c *gin.Context) {
 	itemId := c.Param("item_id")
 	itemIdInt, err := strconv.Atoi(itemId)

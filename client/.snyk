@@ -1,4 +1,0 @@
-# client
-# Snyk policy file, provides ability to ignore vulnerabilities.
-version: v1.22.0
-ignore: {}

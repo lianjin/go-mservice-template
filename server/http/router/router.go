@@ -33,25 +33,8 @@ func NewRouter() *gin.Engine {
 				"message": "pong",
 			})
 		})
-	}
-
-	v1 := r.Group(serviceURIPrefix + "/:client")
-	{
-		v1.Use(validateClient())
-		v1.POST("/items", api.CreateItem)
-		v1.GET("/items/:item_id", api.GetItems)
+		basicGroup.POST("/items", api.CreateItem)
+		basicGroup.GET("/items/:item_id", api.GetItems)
 	}
 	return r
-}
-
-func validateClient() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		client := c.Param("client")
-		if client != "merchant" && client != "customer" {
-			c.JSON(400, gin.H{"error": "Invalid client type"})
-			c.Abort()
-			return
-		}
-		c.Next()
-	}
 }

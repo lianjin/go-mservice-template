@@ -100,6 +100,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace github.com/__TEMPLATE_ORG__/__TEMPLATE_REPO__/common => ../common
-
 replace gopkg.in/yaml.v3 => gopkg.in/yaml.v3 v3.0.1

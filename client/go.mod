@@ -14,5 +14,3 @@ require (
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20251202230838-ff82c1b0f217 // indirect
 	google.golang.org/protobuf v1.36.10 // indirect
 )
-
-replace github.com/__TEMPLATE_ORG__/__TEMPLATE_REPO__/common => ../common

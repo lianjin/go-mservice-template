@@ -140,12 +140,8 @@ jobs:
           go-version: ${{ steps.vars.outputs.go_version }}
           cache: true
 
-      - name: Tidy Go modules
-        run: |
-          for module in common client server; do
-            echo "Tidying module: ${module}"
-            (cd "${module}" && go mod tidy)
-          done
+      - name: Tidy common module
+        run: (cd common && go mod tidy)
 
       - name: Install protoc
         uses: arduino/setup-protoc@v3
@@ -170,7 +166,23 @@ jobs:
         working-directory: server
         run: swag init
 
-      - name: Finalize documentation
+      - name: Publish common module
+        run: |
+          chmod +x scripts/publish-common-module.sh
+          ./scripts/publish-common-module.sh \
+            "${{ steps.vars.outputs.org }}" \
+            "${{ steps.vars.outputs.repo }}" \
+            "v0.0.1"
+
+      - name: Link client and server to common
+        run: |
+          chmod +x scripts/link-common-module.sh
+          ./scripts/link-common-module.sh \
+            "${{ steps.vars.outputs.org }}" \
+            "${{ steps.vars.outputs.repo }}" \
+            "v0.0.1"
+
+      - name: Finalize repository
         run: |
           chmod +x scripts/finalize-init.sh
           ./scripts/finalize-init.sh "${{ env.CANONICAL_TEMPLATE_REPO }}" "${{ github.repository }}"
